@@ -16,7 +16,7 @@ let Blog = require("./models/blog");
 
 let myLogger = require("./middleWares/logger");
 
-app.use(bodyParser.json()); // middleware attached to all routes for app instance
+app.use(bodyParser.json()); // middleware attached to all routes for app instance shriramu
 
 app.use(myLogger);
 app.use("/basic",basicRouter);
