@@ -1,4 +1,5 @@
 import './App.css';
+// import Topar from "./components/topbar/topbar";
 import Blogs from "./components/blogs";
 import NewBlog from "./components/newBlog";
 import {useEffect, useState} from 'react';
@@ -53,7 +54,7 @@ function App() {
 
         console.log("Here !");
 
-        fetch("http://localhost:8080/blog/getAllBlogs")
+        fetch("http://localhost:3001/blog/getAllBlogs")
             .then(res => res.json())
             .then( (result) => {
                 console.log(result);
@@ -82,7 +83,7 @@ function App() {
           <Route path='/' element={<Blogs  blogList={blogList} isLoaded={isLoaded}/>}></Route>
           <Route path='/newBlog' element={ <NewBlog addNewBlog={addNewBlog}/>}></Route>
           <Route path='/showBlog' element={ <ShowBlog />}></Route>
-
+          <Route path='/About' ></Route>
       </Routes>
 );
 }

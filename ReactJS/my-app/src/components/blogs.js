@@ -1,14 +1,4 @@
 import '../css/stylesheet.css';
-
-
-
-// Assignment for today ::
-// 1. Create a Blog component
-//    Title             SubTitle
-//    Content
-//    Author            Read More ....
-// 2. Use it in Blogs Component
-
 import Blog from "./blog";
 import Header from "./header";
 import Footer from "./footer";

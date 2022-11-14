@@ -1,7 +1,7 @@
 
 import {useState} from 'react';
 import '../css/stylesheet.css';
-
+import '../pages/login/login.css';
 
 let AuthForm = function ({addNewBlog}) {
 
@@ -58,41 +58,19 @@ let AuthForm = function ({addNewBlog}) {
 
 
     return (
-        <form onSubmit={submitHandler}>
+        
 
-            <br/>
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label> Username </label>
-                    <input type="text"  value={username} onChange={usernameChangeHandler}/>
-                </div>
-            </div>
-
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label>Password </label>
-                    <input type="text"  value={password} onChange={passwordChangeHandler}/>
-                </div>
-            </div>
-
-
-
-            <br/>
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-
-                    <div className="new-blog-action">
-                        <button type="submit" style={{font: "25px"}} className="button-new-blog"> Submit </button>
-                    </div>
-                </div>
-            </div>
-
-            <br/>
-
-
-        </form>
+<div className="login">
+<span className="loginTitle">Login</span>
+<form className="loginForm" onSubmit={submitHandler}>
+  <label>Email</label>
+  <input className="loginInput" type="text" placeholder="Enter your email..." />
+  <label>Password</label>
+  <input className="loginInput" type="password" placeholder="Enter your password..." />
+  <button className="loginButton">Login</button>
+</form>
+  <button className="loginRegisterButton">Register</button>
+</div>
     )
 }
 

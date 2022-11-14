@@ -1,6 +1,6 @@
 import BlogForm from "./blogForm";
 import '../css/stylesheet.css';
-import Header from "./header";
+import Topbar from "./topbar/topbar";
 import Footer from "./footer";
 
 
@@ -8,11 +8,13 @@ function NewBlog({addNewBlog}) {
 
     return (
         <>
-            <Header/>
+            {/* <Topbar/>
                <div className="newBlogContainer">
                <BlogForm addNewBlog={addNewBlog}/>
                </div>
-            <Footer/>
+            <Footer/> */}
+            <Topbar/>
+            <BlogForm/>
         </>
     )
 

@@ -7,11 +7,8 @@ const {request, response} = require("express");
 
 let router = express.Router();
 
-// Middleware for authenticating the user.
 router.use(checkAuthenticationV2);
 
-
-// /blog/addBlog
 router.post("/addBlog",async (request,response)=> {
     const newBlog = new Blog(request.body);
     await newBlog.save();
@@ -19,14 +16,6 @@ router.post("/addBlog",async (request,response)=> {
 })
 
 
-// Delete / Modify
-
-// Get Blogs 2 apis : Assignment
-    // getBlogByUser : Username
-    // getBlogById : blogId
-
-// GetBlogByUser
-// Query, Params
 router.get("/getAllBlogs",(request,response)=>{
 
     Blog.find({},(err,result)=>{
@@ -38,8 +27,6 @@ router.get("/getAllBlogs",(request,response)=>{
     })
 })
 
-
-// How to get this _Id ?
 router.get("/:id",(request,response)=>{
 
     Blog.find({_id: request.params.id},(err,result)=>{
@@ -52,7 +39,6 @@ router.get("/:id",(request,response)=>{
     })
 })
 
-// How to get this _Id // Update apis
 router.put("/:id",(request,response)=>{
 
     Blog.findOneAndUpdate({_id: request.params.id},{content: request.body.content},{new: true},(err,document)=>{
@@ -65,13 +51,10 @@ router.put("/:id",(request,response)=>{
 })
 
 
-// Delete api
-
 router.delete("/:id",(request,response)=>{
 
 
     try {
-        // Unhandled Exception
         const blogQuery = Blog.find({title : "My First blog"});
         blogQuery.exec();
         new Exception()
@@ -90,7 +73,6 @@ router.delete("/:id",(request,response)=>{
 })
 
 router.post("/understandingQueries",(request,response)=> {
-    // Query Building
 
     const blogQuery = Blog.find({title : "My First blog"})
     .where('author').equals('sajeev_mahajan')

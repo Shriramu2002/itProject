@@ -24,15 +24,19 @@ app.use("/file", fileRouter);
 app.use("/user",userRouter);
 app.use("/blog",blogRouter);
 
-mongoose.connect("mongodb://Shriramu:akila2002@ac-xtkle9l-shard-00-00.bmgakwa.mongodb.net:27017,ac-xtkle9l-shard-00-01.bmgakwa.mongodb.net:27017,ac-xtkle9l-shard-00-02.bmgakwa.mongodb.net:27017/blogwebsite?ssl=true&replicaSet=atlas-enf3zy-shard-0&authSource=admin&retryWrites=true&w=majority");
+const uri = "mongodb://localhost:27017/newdb";
 
-const db = mongoose.connection;
+async function connect() {
+  try{
+    await mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+    console.log("Connected to MongoDB");
+  }catch(error){
+    // console.error(error);
+  }
 
-db.on("error", console.error.bind(console, "Connection error: "));
-db.once("open", function () {
-    console.log("Database Connected successfully");
-})
+}
 
+connect();
 /*
         Assignment :: Routes Specific to Blog (new Router file specific to blogs )
                          1. Add Blog
@@ -40,8 +44,10 @@ db.once("open", function () {
                               3. Find Blog
                                 4. Update Blog
  */
-
-app.listen(8080,function(req,res) {
-
-    console.log("Listening on port " + 8080);
+app.get("/",(req,res)=>{
+  res.json({"users":['1','2']})
 })
+app.listen(3001,() =>{
+
+    console.log("Listening on port " + 3001);
+});
