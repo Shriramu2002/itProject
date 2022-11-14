@@ -1,7 +1,7 @@
 import BlogForm from "./blogForm";
 import '../css/stylesheet.css';
 import Topbar from "./topbar/topbar";
-import Footer from "./footer";
+// import Footer from "./footer";
 
 
 function NewBlog({addNewBlog}) {

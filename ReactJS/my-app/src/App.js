@@ -6,7 +6,7 @@ import {useEffect, useState} from 'react';
 import {Routes, Route} from "react-router-dom";
 import AuthForm from "./components/auth";
 import ShowBlog from "./components/showBlog";
-
+import About from "./components/about";
 // Functional Component, looks like exactly JS functions
 // JS : Imperative Approach
 // const para = document.createElement('p');
@@ -83,7 +83,7 @@ function App() {
           <Route path='/' element={<Blogs  blogList={blogList} isLoaded={isLoaded}/>}></Route>
           <Route path='/newBlog' element={ <NewBlog addNewBlog={addNewBlog}/>}></Route>
           <Route path='/showBlog' element={ <ShowBlog />}></Route>
-          <Route path='/About' ></Route>
+          <Route path='/About' element={ <About /> } ></Route>
       </Routes>
 );
 }

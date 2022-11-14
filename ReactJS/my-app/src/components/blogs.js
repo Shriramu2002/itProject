@@ -1,6 +1,6 @@
 import '../css/stylesheet.css';
 import Blog from "./blog";
-import Header from "./header";
+import Topbar from './topbar/topbar';
 import Footer from "./footer";
 
 function Blogs({blogList,isLoaded}){
@@ -8,7 +8,7 @@ function Blogs({blogList,isLoaded}){
     if(!isLoaded) {
         return (
             <>
-             <Header/>
+             <Topbar/>
              <h1>Is Loading .... </h1>
              <Footer/>
             </>
@@ -17,7 +17,7 @@ function Blogs({blogList,isLoaded}){
 
         return (
             <>
-                <Header/>
+                <Topbar/>
                 <div className="blogs">
                     <h1> My Blog List !</h1>
                     <ul className="blog">
