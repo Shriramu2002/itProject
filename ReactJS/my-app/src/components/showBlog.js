@@ -15,17 +15,12 @@ function ShowBlog() {
             .catch(err => console.log(err));
 
     },[]);
-
    if(!isLoaded){
        return <div> Loading ....</div>
    } else {
        return (
            <ul>
-               {blogs.map(blog => (
-                   <li key={blog._id}>
-                       {blog.title} {blog.subTitle}
-                   </li>
-               ))}
+               <h1></h1>
            </ul>
        );
    }

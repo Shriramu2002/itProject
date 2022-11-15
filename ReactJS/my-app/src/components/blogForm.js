@@ -33,7 +33,7 @@ let BlogForm = function ({addNewBlog}) {
     let [subTitle, setSubTitle] = useState("");
     let [author,setAuthor] = useState("");
     let [content, setContent] = useState("");
-
+    let [image,setimage] = useState("");
 
    let titleChangeHandler = (event) => {
 
@@ -58,6 +58,11 @@ let BlogForm = function ({addNewBlog}) {
     }
 
 
+    let imageChangeHandler = (event) => {
+      setimage(event.target.value);
+  }
+
+
     let submitHandler = (event) => {
        event.preventDefault();
 
@@ -66,11 +71,12 @@ let BlogForm = function ({addNewBlog}) {
            title: title,
            subTitle: subTitle,
            content: content,
-           author: author
+           author: author,
+           image: image
        }
 
-       console.log(newBlog);
-       addNewBlog(newBlog);
+      //  console.log(newBlog);
+      //  addNewBlog(newBlog);
 
       // to call the backend and add this new bog
 
@@ -122,12 +128,12 @@ let BlogForm = function ({addNewBlog}) {
         src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
         alt=""
       />
-      <form className="writeForm" onsubmit={submitHandler}>
+      <form className="writeForm" onSubmit={submitHandler}>
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>
           </label>
-          <input id="fileInput" type="file" style={{ display: "none" }} />
+          <input id="fileInput" type="file" style={{ display: "none" }} value={image} onChange={imageChangeHandler}/>
           <input
             className="writeInput"
             placeholder="Title"

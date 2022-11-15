@@ -1,5 +1,5 @@
 import '../css/stylesheet.css';
-import Blog from "./blog";
+import Blog from "./post/blog";
 import Topbar from './topbar/topbar';
 import Footer from "./footer";
 
@@ -23,10 +23,10 @@ function Blogs({blogList,isLoaded}){
                     <ul className="blog">
                         {
                             blogList.map(item => <Blog item={item}/>)
+                            // blogList.map(blogList.author)
                         }
                     </ul>
                 </div>
-                <Footer/>
 
             </>
         )

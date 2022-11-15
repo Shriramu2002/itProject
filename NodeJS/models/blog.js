@@ -8,10 +8,11 @@ const blogSchema = new mongoose.Schema({
    author: {type: String}, // username of user creating this blog
    createdDate: {type: Date, default: Date.now},
    subTitle: String,
-   imagePath: {  //rootDirectory/images/mypic.jpg
-      type: String,
-      get: v => `${imageRootPath}/${v}`
-   },
+   image:
+    {
+        data: Buffer,
+        contentType: String
+    },
    comments: [{
       postedBy: String,
       body: String,

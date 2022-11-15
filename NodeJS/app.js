@@ -24,19 +24,31 @@ app.use("/file", fileRouter);
 app.use("/user",userRouter);
 app.use("/blog",blogRouter);
 
-const uri = "mongodb://localhost:27017/newdb";
+// const uri = "mongodb+srv://Jokesta:randyorton1234@cluster0.uomgu24.mongodb.net/?retryWrites=true&w=majority";
 
-async function connect() {
-  try{
-    await mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-    console.log("Connected to MongoDB");
-  }catch(error){
-    // console.error(error);
-  }
+// async function connect() {
+//   try{
+//     await mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+//     console.log("Connected to MongoDB");
+//   }catch(error){
+//     // console.error(error);
+//   }
 
-}
+// }
 
-connect();
+// connect();
+
+
+
+
+mongoose.connect("mongodb+srv://Jokesta:randyorton1234@cluster0.uomgu24.mongodb.net/?retryWrites=true&w=majority");
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "Connection error: "));
+db.once("open", function () {
+    console.log("Database Connected successfully");
+})
 /*
         Assignment :: Routes Specific to Blog (new Router file specific to blogs )
                          1. Add Blog
@@ -44,10 +56,7 @@ connect();
                               3. Find Blog
                                 4. Update Blog
  */
-app.get("/",(req,res)=>{
-  res.json({"users":['1','2']})
-})
-app.listen(3001,() =>{
 
+app.listen(3001,() =>{
     console.log("Listening on port " + 3001);
 });

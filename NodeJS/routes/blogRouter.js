@@ -12,8 +12,10 @@ router.use(checkAuthenticationV2);
 router.post("/addBlog",async (request,response)=> {
     const newBlog = new Blog(request.body);
     await newBlog.save();
+    console.log(newBlog);
     response.send(newBlog);
 })
+
 
 
 router.get("/getAllBlogs",(request,response)=>{
