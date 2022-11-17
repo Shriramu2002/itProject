@@ -82,7 +82,7 @@ function App() {
           <Route path='/' element={<Blogs  blogList={blogList} isLoaded={isLoaded}/>}></Route>
           <Route path='/newBlog' element={ <NewBlog addNewBlog={addNewBlog}/>}></Route>
           <Route path='/showBlog' element={ <ShowBlog />}></Route>
-
+          
       </Routes>
 );
 }
