@@ -70,6 +70,7 @@ router.post("/signup", async (request,response) => {
 router.post("/login",async (request,response) => {
     // /user : we were trying to authenticate the user and then sending success response
     let user = await User.findOne({username: request.body.username});
+    console.log(user.username);
     if( user !=null && user.password === request.body.password) {
         // create session over here !
         request.session.username = user.username;
@@ -82,14 +83,18 @@ router.post("/login",async (request,response) => {
 
 
 router.get("/:username",checkAuthenticationV2, (request,response) => {
-
+    console.log("finishedAuthentication");
     let user = User.findOne({username: request.params.username}, function(err, result) {
+        console.log("foundUser");
         if(err) {
             response.send(err);
-        } if( user.username === request.session.username) {
+        } if( result.username === request.session.username) {
+            console.log(result.username);
+            console.log("success");
             response.send(result);
         }
     });
+    console.log(user.username);
 });
 
 

@@ -5,6 +5,9 @@ import Footer from "./footer";
 
 
 function NewBlog({addNewBlog}) {
+    //should check weather username exists or not
+    //if not exist redirect to login page
+    //then should be directed to addnew blog page
 
     return (
         <>
