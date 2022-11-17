@@ -75,36 +75,12 @@ let BlogForm = function ({addNewBlog}) {
            image: image
        }
 
-      //  console.log(newBlog);
-      //  addNewBlog(newBlog);
-
-      // to call the backend and add this new bog
-
-      // Async call to the nodejs application
-      // Read about JSON and JSON Strings
-
         let fetchOption = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newBlog)
         }
            console.log(newBlog)
-        /*
-    Domain       A                                      B
-         localhost:3000                             localhost:8080
-          Frontend Application                     Backend Application
-            BlogForm -> http call    ---(Strings)--->   localhost:8080/addBlog
-
-
-            Client : React App
-            Application Layer : NodeJS Application
-            Database Layer : MongoDb Atlas
-
-            CROSS ORIGIN RESOURCE SHARING
-
-            localhost:3000 --> localhost:8080/
-
-         */
 
         fetch("http://localhost:3001/blog/addBlog", fetchOption)
             .then( response => console.log(response))
