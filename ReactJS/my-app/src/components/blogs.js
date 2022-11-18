@@ -1,33 +1,22 @@
 import '../css/stylesheet.css';
 
-
-
-// Assignment for today ::
-// 1. Create a Blog component
-//    Title             SubTitle
-//    Content
-//    Author            Read More ....
-// 2. Use it in Blogs Component
-
 import Blog from "./blog";
-import Header from "./header";
-import Footer from "./footer";
-
+import Topbar from './topbar/topbar';
 function Blogs({blogList,isLoaded}){
 
     if(!isLoaded) {
         return (
             <>
-             <Header/>
+           <Topbar/>
              <h1>Is Loading .... </h1>
-             <Footer/>
+            
             </>
         )
     } else {
 
         return (
             <>
-                <Header/>
+                    <Topbar/>
                 <div className="blogs">
                     <h1> My Blog List !</h1>
                     <ul className="blog">
@@ -36,7 +25,7 @@ function Blogs({blogList,isLoaded}){
                         }
                     </ul>
                 </div>
-                <Footer/>
+
 
             </>
         )

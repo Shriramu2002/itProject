@@ -45,7 +45,7 @@ let AuthForm = function ({addNewBlog}) {
 
         fetch("http://localhost:8080/user/login", fetchOptions)
             .then(response => {
-                if(response.status == 200){
+                if(response.status === 200){
                     setLogin(true);
                 }
             })

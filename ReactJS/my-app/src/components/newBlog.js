@@ -1,7 +1,6 @@
 import BlogForm from "./blogForm";
 import '../css/stylesheet.css';
-import Header from "./header";
-import Footer from "./footer";
+import Topbar from "./topbar/topbar";
 
 
 function NewBlog({addNewBlog}) {
@@ -11,11 +10,11 @@ function NewBlog({addNewBlog}) {
 
     return (
         <>
-            <Header/>
-               <div className="newBlogContainer">
+                <Topbar/>
+               
                <BlogForm addNewBlog={addNewBlog}/>
-               </div>
-            <Footer/>
+   
+    
         </>
     )
 

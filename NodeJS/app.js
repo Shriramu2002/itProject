@@ -16,7 +16,7 @@ let Blog = require("./models/blog");
 
 let myLogger = require("./middleWares/logger");
 
-app.use(bodyParser.json()); // middleware attached to all routes for app instance  **shriramu:akila2002
+app.use(bodyParser.json()); // middleware attached to all routes for app instance shriramu:akila2002
 
 app.use(myLogger);
 app.use("/basic",basicRouter);
@@ -24,7 +24,7 @@ app.use("/file", fileRouter);
 app.use("/user",userRouter);
 app.use("/blog",blogRouter);
 
-mongoose.connect("mongodb://Shriramu:akila2002@ac-xtkle9l-shard-00-00.bmgakwa.mongodb.net:27017,ac-xtkle9l-shard-00-01.bmgakwa.mongodb.net:27017,ac-xtkle9l-shard-00-02.bmgakwa.mongodb.net:27017/blogwebsite?ssl=true&replicaSet=atlas-enf3zy-shard-0&authSource=admin&retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://Jokesta:randyorton123@cluster0.uomgu24.mongodb.net/?retryWrites=true&w=majority");
 
 const db = mongoose.connection;
 
@@ -33,15 +33,11 @@ db.once("open", function () {
     console.log("Database Connected successfully");
 })
 
-/*
-        Assignment :: Routes Specific to Blog (new Router file specific to blogs )
-                         1. Add Blog
-                           2. Delete Blog
-                              3. Find Blog
-                                4. Update Blog
- */
+// mongoose.connect("mongodb://localhost:27017/nwedb").then(()=>{
+//   console.log("Database connected")
+// });
 
-app.listen(8080,function(req,res) {
+app.listen(3001,function(req,res) {
 
-    console.log("Listening on port " + 8080);
+    console.log("Listening on port " + 3001);
 })

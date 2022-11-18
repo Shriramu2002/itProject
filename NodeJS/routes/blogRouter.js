@@ -14,6 +14,7 @@ router.use(checkAuthenticationV2);
 // /blog/addBlog
 router.post("/addBlog",async (request,response)=> {
     const newBlog = new Blog(request.body);
+    console.log(newBlog);
     await newBlog.save();
     response.send(newBlog);
 })
