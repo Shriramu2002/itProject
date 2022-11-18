@@ -5,7 +5,7 @@ function ShowBlog() {
     const [blogs,setBlogs] = useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:8080/blog/getAllBlogs")
+        fetch("http://localhost:3001/blog/getAllBlogs")
             .then(res => res.json())
             .then( (result) => {
                 console.log(result);

@@ -1,6 +1,6 @@
 
 import {useState} from 'react';
-import '../css/stylesheet.css';
+import '../pages/write/write.css';
 /*
        Form_Validation :
        Validation of the input fields in the form
@@ -35,10 +35,6 @@ let BlogForm = function ({addNewBlog}) {
 
 
    let titleChangeHandler = (event) => {
-
-       // if(event.target.value == 'invalid input')
-       //     //  console outputs // display some different ux or any other thing
-       // else
        setTitle(event.target.value);
    }
 
@@ -71,35 +67,13 @@ let BlogForm = function ({addNewBlog}) {
        console.log(newBlog);
        addNewBlog(newBlog);
 
-      // to call the backend and add this new bog
-
-      // Async call to the nodejs application
-      // Read about JSON and JSON Strings
-
         let fetchOption = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newBlog)
         }
 
-        /*
-    Domain       A                                      B
-         localhost:3000                             localhost:8080
-          Frontend Application                     Backend Application
-            BlogForm -> http call    ---(Strings)--->   localhost:8080/addBlog
-
-
-            Client : React App
-            Application Layer : NodeJS Application
-            Database Layer : MongoDb Atlas
-
-            CROSS ORIGIN RESOURCE SHARING
-
-            localhost:3000 --> localhost:8080/
-
-         */
-
-        fetch("http://localhost:8080/blog/addBlog", fetchOption)
+        fetch("http://localhost:3001/blog/addBlog", fetchOption)
             .then( response => console.log(response))
             .catch(err => console.error(err))
 
@@ -113,55 +87,59 @@ let BlogForm = function ({addNewBlog}) {
 
 
     return (
-        <form onSubmit={submitHandler}>
-
-            <br/>
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label> Title </label>
-                    <input type="text"  value={title} onChange={titleChangeHandler}/>
-                </div>
-            </div>
-
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label>Sub Title </label>
-                    <input type="text"  value={subTitle} onChange={subTitleChangeHandler}/>
-                </div>
-            </div>
-
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label> Author </label>
-                    <input type="text" value={author} onChange={authorChangeHandler}/>
-                </div>
-            </div>
-
-
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-                    <label> Content </label>
-                    <input type="text" value={content} onChange={contentChangeHandler}/>
-                </div>
-            </div>
-
-            <br/>
-            <div className="new-blog-outer-div">
-                <div className="new-blog-inner-div">
-
-                    <div className="new-blog-action">
-                          <button type="submit" style={{font: "25px"}} className="button-new-blog"> Add Blog</button>
-                    </div>
-            </div>
-            </div>
-
-            <br/>
-
-
+        <div className="write">
+        <img
+          className="writeImg"
+          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          alt=""
+        />
+        <form className="writeForm" onSubmit={submitHandler}>
+          <div className="writeFormGroup">
+            <label htmlFor="fileInput">
+              <i className="writeIcon fas fa-plus"></i>
+            </label>
+            <input id="fileInput" type="file" style={{ display: "none" }} />
+            <input
+              className="writeInput"
+              placeholder="Title"
+              type="text"
+              autoFocus={true}
+              value={title}
+              onChange={titleChangeHandler}
+            />
+            <input
+              className="writeInput"
+              placeholder="SubTitle"
+              type="text"
+              autoFocus={true}
+              value={subTitle}
+              onChange={subTitleChangeHandler}
+            />
+            <input
+              className="writeInput"
+              placeholder="Author"
+              type="text"
+              autoFocus={true}
+              value={author}
+              onChange={authorChangeHandler}
+            //   value={}
+            />
+          </div>
+          <div className="writeFormGroup">
+            <textarea
+              className="writeInput writeText"
+              placeholder="Tell your story..."
+              type="text"
+              autoFocus={true}
+              value={content}
+              onChange={contentChangeHandler}
+            />
+          </div>
+          <button className="writeSubmit" type="submit">
+            Publish
+          </button>
         </form>
+      </div>
     )
 }
 

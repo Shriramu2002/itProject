@@ -1,11 +1,12 @@
 import Topbar from "./topbar/topbar";
-import Header from "./header";
-
+import Header1 from "./header1/header1";
+import Sidebar from "./sidebar/sidebar";
 function About(){
     return (
         <>
-                {/* <Topbar/> */}
-        <Header/>
+                <Topbar/> 
+        <Header1/>
+        <Sidebar/>
         </>
 
      )
