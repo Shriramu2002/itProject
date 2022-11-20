@@ -1,9 +1,29 @@
 let express = require("express"); // express modules, importing express object
 let app = express(); // creating object of this express class
 let bodyParser = require("body-parser");
+let session = require("express-session");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+  origin:["http://localhost:3000"],
+  methods:["GET","POST"],
+  credentials:true,
+})
+);
+app.use(bodyParser.json());
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(session({
+    secret: "This is my own secret",
+    saveUninitialized: true,
+    cookie: { expires: oneDay,
+              
+             },
+    resave: false
+}));
+
+app.use(cookieParser());
 
 let basicRouter = require("./routes/basicRoutes");
 let fileRouter = require("./routes/fileRoutes");
@@ -16,7 +36,7 @@ let Blog = require("./models/blog");
 
 let myLogger = require("./middleWares/logger");
 
-app.use(bodyParser.json()); // middleware attached to all routes for app instance  **shriramu:akila2002
+ // middleware attached to all routes for app instance  **shriramu:akila2002
 
 app.use(myLogger);
 app.use("/basic",basicRouter);

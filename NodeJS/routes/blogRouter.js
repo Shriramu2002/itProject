@@ -1,22 +1,36 @@
 let express = require("express")
+let router = express.Router();
 // Add New Blog
 const User = require("../models/user");
 const Blog = require("../models/blog");
+let session = require("express-session");
 let checkAuthenticationV2 = require("../middleWares/checkAuthMiddleware");
+let cookieParser = require("cookie-parser");
 const {request, response} = require("express");
 
-let router = express.Router();
+
 
 // Middleware for authenticating the user.
-router.use(checkAuthenticationV2);
+// const oneDay = 1000 * 60 * 60 * 24;
+// router.use(session({
+//     secret: "This is my own secret",
+//     saveUninitialized: true,
+//     cookie: { expires: oneDay,
+              
+//              },
+//     resave: false
+// }));
+// router.use(cookieParser());
 
 
 // /blog/addBlog
-router.post("/addBlog",async (request,response)=> {
+router.post("/addBlog",checkAuthenticationV2, async (request,response)=> {
+    console.log(request.session);
+    console.log("insideAddblog");
     const newBlog = new Blog(request.body);
     await newBlog.save();
-    response.send(newBlog);
-})
+    response.send();
+});
 
 
 // Delete / Modify

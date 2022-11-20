@@ -19,14 +19,16 @@ let transporter = nodemailer.createTransport({
 
 
 
-const oneDay = 1000 * 60 * 60 * 24;
-router.use(session({
-    secret: "This is my own secret",
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay},
-    resave: false
-}));
-router.use(cookieParser());
+// const oneDay = 1000 * 60 * 60 * 24;
+// router.use(session({
+//     secret: "This is my own secret",
+//     saveUninitialized: true,
+//     cookie: { expires: oneDay,
+              
+//              },
+//     resave: false
+// }));
+// router.use(cookieParser());
 
 
 // 1st Request : create session
@@ -69,13 +71,15 @@ router.post("/signup", async (request,response) => {
 
 router.post("/login",async (request,response) => {
     // /user : we were trying to authenticate the user and then sending success response
+    console.log(request.session);
     let user = await User.findOne({username: request.body.username});
     console.log(user.username);
     if( user !=null && user.password === request.body.password) {
         // create session over here !
         request.session.username = user.username;
         console.log(request.session);
-        response.send("User is authenticated!").status(200);
+        
+        response.send("User is authenticated!").status(201);
     } else {
         response.send("No user found !").status(501);
     }

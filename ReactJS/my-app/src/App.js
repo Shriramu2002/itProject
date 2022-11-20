@@ -2,7 +2,7 @@ import './App.css';
 import Blogs from "./components/blogs";
 import NewBlog from "./components/newBlog";
 import {useEffect, useState} from 'react';
-import {Routes, Route} from "react-router-dom";
+import {Routes, useNavigate, Route} from "react-router-dom";
 import AuthForm from "./components/auth";
 import ShowBlog from "./components/showBlog";
 
@@ -28,25 +28,33 @@ import ShowBlog from "./components/showBlog";
 
 function App() {
 // Create an api to fetch a single blog when user clicks on read more
+    let navigate = useNavigate();
     let [blogList, setBlogList] = useState([]);
     let [isLoaded, setIsLoaded] = useState(false);
-
-
+    let [login, setLogin] = useState(false);
+    let [username, setUsername] = useState("");
+    let [password, setPassword] = useState("");
     // let myfunction = async function () {
     //    let response  = await axios.get("http://localhost:8080/blog/getAllBlogs");
     //     response.data.id ;
     // }
 
+    let auth = function(log,usrname,pass){
+        setLogin(log);
+        setUsername(usrname);
+        setPassword(pass);
+        console.log("changedLogin");
+        navigate(-1);
+    }
 
-
-
+    
 
     useEffect(()=>{
-        // axios
+        // // axios
 
         // axios.post(baseUrl, {
         //     body:
-        // })
+        // });
 
 
         // myfunction()
@@ -59,6 +67,7 @@ function App() {
                 console.log(result);
                 setBlogList(result);
                 setIsLoaded(true);
+                
             })
             .catch(err => console.log(err));
     },[]);
@@ -74,13 +83,14 @@ function App() {
 
     let addNewBlog = (newBlogObject) => {
         setBlogList([...blogList,newBlogObject])
+       
     }
 
   return (
       <Routes>
-          <Route path='/auth' element={<AuthForm/>}></Route>
+          <Route path='/auth' element={<AuthForm auth={auth}/>}></Route>
           <Route path='/' element={<Blogs  blogList={blogList} isLoaded={isLoaded}/>}></Route>
-          <Route path='/newBlog' element={ <NewBlog addNewBlog={addNewBlog}/>}></Route>
+          <Route path='/newBlog' element={ <NewBlog login={login}  addNewBlog={addNewBlog}/>}></Route>
           <Route path='/showBlog' element={ <ShowBlog />}></Route>
 
       </Routes>

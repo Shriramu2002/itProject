@@ -3,14 +3,14 @@ import {useState} from 'react';
 import '../css/stylesheet.css';
 
 
-let AuthForm = function ({addNewBlog}) {
+let AuthForm = function (props) {
 
 
 
 
     let [username, setUsername] = useState("");
     let [password, setPassword] = useState("");
-    let [login, setLogin] = useState(false);
+   
 
 
     let usernameChangeHandler = (event) => {
@@ -37,18 +37,21 @@ let AuthForm = function ({addNewBlog}) {
 
         console.log(user);
 
-        let fetchOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+       let fetchOptions = {
+           credentials: 'include',
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
             body : JSON.stringify(user)
-        }
+       }
 
         fetch("http://localhost:8080/user/login", fetchOptions)
             .then(response => {
-                if(response.status == 200){
-                    setLogin(true);
-                }
-            })
+                console.log(response);
+               if(response.status ===   200){
+                    props.auth(true,username,password);
+
+               }
+           })
 
         setUsername("");
         setPassword("");
